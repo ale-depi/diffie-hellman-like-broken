@@ -1,3 +1,11 @@
+# title
+print("╔═════════════════════════════════════════════════════════════════════╗")
+print("║ A troyan Diffie-Hellman-like protocol based on proof of gullibility ║")
+print("║ (automated version)                                                 ║")
+print("╚═════════════════════════════════════════════════════════════════════╝")
+
+
+
 # private modular integers
 x1, x2, x3, x4 = var("x1 x2 x3 x4")   # Encryptor
 y1, y2, y3, y4 = var("y1 y2 y3 y4")   # Decryptor
@@ -15,7 +23,7 @@ q1, q2 = var("q1 q2")
 
 
 # protocol correctness
-print("\n\n")
+print()
 print("┌──────────────┐")
 print("│ The protocol │")
 print("└──────────────┘")
@@ -101,7 +109,7 @@ print(f"e12 = e11 + p4 = {expand(e12)}\n")
 
 
 # protocol correctness
-print("\n\n")
+print()
 print("┌─────────────┐")
 print("│ Correctness │")
 print("└─────────────┘")
@@ -112,7 +120,7 @@ print(f"The protocol is correct since <e12 == d12> is {correctness}.")
 
 
 # key computation of the original paper
-print("\n\n")
+print()
 print("┌──────────┐")
 print("│ The flaw │")
 print("└──────────┘")
@@ -134,7 +142,7 @@ print(f"\n<K == d12> is {is_K_equal_to_d12}.\n")
 
 
 # actual key computation
-print("\n\n")
+print()
 print("┌────────────┐")
 print("│ Actual key │")
 print("└────────────┘")
