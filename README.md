@@ -12,7 +12,7 @@ In order to run the script, you must install
 approach, the `Dockerfile` is included in the Sagemath repository.
 
 Once you have installed the SageMath software, the usage is straight.
-```sage
+```bash
 $ sage script.sage
 ```
 All the computations will be done by the software.
