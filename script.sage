@@ -1,5 +1,5 @@
-darkcyan_begin = "\033[36m"
-darkcyan_end = "\033[0m"
+darkcyan_begin = "\033[36;01m"
+darkcyan_end = "\033[00m"
 redbold_begin = "\033[91;01m"
 redbold_end = "\033[00m"
 
@@ -110,7 +110,9 @@ print(f"{darkcyan_begin}│ Alternative way to compute the shared secret │{dar
 print(f"{darkcyan_begin}└──────────────────────────────────────────────┘{darkcyan_end}")
 
 q1 = 2 * (y1 + y2) * x2 + 2 * (x1 + x2) * y2
+print(f"q1 = 2 * (y1 + y2) * x2 + 2 * (x1 + x2) * y2 = {redbold_begin}{expand(q1)}{redbold_end}")
 q2 = q1 * (d3 + y3 + e3 + x3) + 3 * d3 * e3 + x3 * y3
+print(f"q2 = q1 * (d3 + y3 + e3 + x3) + 3 * d3 * e3 + x3 * y3 = {redbold_begin}{expand(q2)}{redbold_end}")
 shared_secret = e4 ** 2 + d4 ** 2 + 2 * q2 - 2 * e6 * d6 + x4 + y4
 alternative_way = bool(shared_secret == e12)
 print("The shared secret can be computed as <shared_secret = e4**2 + d4**2 + 2*q2 - 2*e6*d6 + x4 + y4>\n"
