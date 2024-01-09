@@ -1,7 +1,7 @@
 darkcyan_begin = "\033[36m"
 darkcyan_end = "\033[0m"
-redbold_begin = "\033[91m\033[1m"
-redbold_end = "\033[0m\033[0m"
+redbold_begin = "\033[91;01m"
+redbold_end = "\033[00m"
 
 # title
 print(f"{darkcyan_begin}╔═════════════════════════════════════════════════════════════════════╗{darkcyan_end}")
@@ -14,16 +14,6 @@ print(f"{darkcyan_begin}╚═════════════════�
 # private modular integers
 x1, x2, x3, x4 = var("x1 x2 x3 x4")   # Encryptor
 y1, y2, y3, y4 = var("y1 y2 y3 y4")   # Decryptor
-
-# derivatives
-d1, d2, d3, d4, d5, d6, d7, d8, d9, d10, d11, d12 = var("d1 d2 d3 d4 d5 d6 d7 d8 d9 d10 d11 d12")
-e1, e2, e3, e4, e5, e6, e7, e8, e9, e10, e11, e12 = var("e1 e2 e3 e4 e5 e6 e7 e8 e9 e10 e11 e12")
-
-# disclosed values (i.e. public)
-p1, p2, p3, p4, p5 = var("p1 p2 p3 p4 p5")
-
-# mixes the private values used by both parties
-q1, q2 = var("q1 q2")
 
 
 
@@ -113,6 +103,21 @@ print(f"e12 = e11 + p4 = {redbold_begin}{expand(e12)}\033[0m{darkcyan_end}")
 
 
 
+# alternative way to compute the shared secret
+print()
+print(f"{darkcyan_begin}┌──────────────────────────────────────────────┐{darkcyan_end}")
+print(f"{darkcyan_begin}│ Alternative way to compute the shared secret │{darkcyan_end}")
+print(f"{darkcyan_begin}└──────────────────────────────────────────────┘{darkcyan_end}")
+
+q1 = 2 * (y1 + y2) * x2 + 2 * (x1 + x2) * y2
+q2 = q1 * (d3 + y3 + e3 + x3) + 3 * d3 * e3 + x3 * y3
+shared_secret = e4 ** 2 + d4 ** 2 + 2 * q2 - 2 * e6 * d6 + x4 + y4
+alternative_way = bool(shared_secret == e12)
+print("The shared secret can be computed as <shared_secret = e4**2 + d4**2 + 2*q2 - 2*e6*d6 + x4 + y4>\n"
+      f"in fact, if we check <shared_secret == e12>, it is {redbold_begin}{alternative_way}{redbold_end}.")
+
+
+
 # protocol correctness
 print()
 print(f"{darkcyan_begin}┌─────────────┐{darkcyan_end}")
@@ -161,6 +166,6 @@ is_difference_equal_to_expr = bool(difference_K_and_e12 == expr)
 print(f"and see that <K - e12 == -p3 * (e6 + d6)> is {redbold_begin}{is_difference_equal_to_expr}{redbold_end}.")
 
 is_e12_made_by_only_public_values = bool(e12 == 2*p3**2 + p4 + p5)
-print(f"This implies that <e12 == 2*p3**2 + p4 + p5> is {redbold_begin}{is_e12_made_by_only_public_values}\033[0m{darkcyan_end}")
+print(f"This implies that <e12 == 2*p3**2 + p4 + p5> is {redbold_begin}{is_e12_made_by_only_public_values}\033[0m{darkcyan_end}.")
 print("proving that the shared secret can be computed using only public values.")
 print("Therefore, the protocol cannot be used.\n")
